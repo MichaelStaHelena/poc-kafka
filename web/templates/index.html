@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <title>POC Kafka — ao vivo</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js"></script>
+</head>
+<body>
+<header>
+    <h1>POC Kafka <small>stream ao vivo</small></h1>
+    <form id="cfg" onsubmit="connect(event)">
+        <label>tópico <input name="topic" value="{{ default_topic }}"></label>
+        <label>group <input name="group" placeholder="(auto)"></label>
+        <button type="submit">conectar</button>
+        <button type="button" onclick="disconnect()">parar</button>
+        <span id="status" class="status idle">ocioso</span>
+    </form>
+</header>
+
+<main hx-ext="sse">
+    <section id="stage">
+        {% for p in partitions %}
+        <div class="partition" data-part="{{ p }}">
+            <h2>partição {{ p }}</h2>
+            <div class="col" id="part-{{ p }}"></div>
+        </div>
+        {% endfor %}
+    </section>
+    <div id="sse-host" style="display:none"></div>
+</main>
+
+<script>
+    function connect(e) {
+        e.preventDefault();
+        const fd = new FormData(document.getElementById('cfg'));
+        const params = new URLSearchParams();
+        params.set('topic', fd.get('topic'));
+        if (fd.get('group')) params.set('group', fd.get('group'));
+        const url = '/stream?' + params.toString();
+
+        disconnect();
+        const host = document.getElementById('sse-host');
+        host.setAttribute('sse-connect', url);
+        host.setAttribute('sse-swap', 'message');
+        host.setAttribute('hx-swap', 'none');
+        htmx.process(host);
+        setStatus('conectado', 'live');
+    }
+
+    function disconnect() {
+        const host = document.getElementById('sse-host');
+        host.removeAttribute('sse-connect');
+        host.removeAttribute('sse-swap');
+        htmx.process(host);
+        document.querySelectorAll('.col').forEach(c => c.innerHTML = '');
+        setStatus('ocioso', 'idle');
+    }
+
+    function setStatus(text, cls) {
+        const s = document.getElementById('status');
+        s.textContent = text;
+        s.className = 'status ' + cls;
+    }
+</script>
+</body>
+</html>
