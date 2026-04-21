@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Kafka broker data (mounted volume) — segmentos de log visíveis durante a demo
+kafka-data/
+
+# Slides exportados
+slides/*.pdf
+slides/*.html

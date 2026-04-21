@@ -1,0 +1,13 @@
+[project]
+name = "poc-kafka"
+version = "0.1.0"
+description = "Demo de Kafka (KRaft + Kafka-UI) com scripts Python para apresentacao"
+requires-python = ">=3.11"
+dependencies = [
+    "kafka-python>=2.0.2",
+    "rich>=13.7.0",
+    "faker>=24.0.0",
+]
+
+[tool.uv]
+dev-dependencies = []

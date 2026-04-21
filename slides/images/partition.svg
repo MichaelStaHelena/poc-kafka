@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" font-family="sans-serif">
+  <style>
+    .t { font-size: 14px; }
+    .h { font-size: 16px; font-weight: bold; }
+    .cell { fill: #e8f1fb; stroke: #2b6cb0; stroke-width: 1.5; }
+    .active { fill: #fefcbf; stroke: #b7791f; }
+  </style>
+  <text class="h" x="10" y="25">Topic: demo.events</text>
+
+  <text class="t" x="10" y="60">partition 0</text>
+  <g transform="translate(10,70)">
+    <rect class="cell" x="0" y="0" width="40" height="30"/>
+    <rect class="cell" x="42" y="0" width="40" height="30"/>
+    <rect class="cell" x="84" y="0" width="40" height="30"/>
+    <rect class="active" x="126" y="0" width="40" height="30"/>
+    <text class="t" x="10" y="20">0</text>
+    <text class="t" x="52" y="20">1</text>
+    <text class="t" x="94" y="20">2</text>
+    <text class="t" x="136" y="20">3</text>
+  </g>
+
+  <text class="t" x="10" y="130">partition 1</text>
+  <g transform="translate(10,140)">
+    <rect class="cell" x="0" y="0" width="40" height="30"/>
+    <rect class="cell" x="42" y="0" width="40" height="30"/>
+    <rect class="active" x="84" y="0" width="40" height="30"/>
+    <text class="t" x="10" y="20">0</text>
+    <text class="t" x="52" y="20">1</text>
+    <text class="t" x="94" y="20">2</text>
+  </g>
+
+  <text class="t" x="10" y="200">partition 2</text>
+  <g transform="translate(10,210)">
+    <rect class="cell" x="0" y="0" width="40" height="30"/>
+    <rect class="cell" x="42" y="0" width="40" height="30"/>
+    <rect class="cell" x="84" y="0" width="40" height="30"/>
+    <rect class="cell" x="126" y="0" width="40" height="30"/>
+    <rect class="active" x="168" y="0" width="40" height="30"/>
+    <text class="t" x="10" y="20">0</text>
+    <text class="t" x="52" y="20">1</text>
+    <text class="t" x="94" y="20">2</text>
+    <text class="t" x="136" y="20">3</text>
+    <text class="t" x="178" y="20">4</text>
+  </g>
+
+  <text class="t" x="220" y="250">offset -></text>
+</svg>
